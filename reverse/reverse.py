@@ -38,5 +38,37 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
-        pass
+    def reverse_list_helper(self, node, prev):
+        # make tail head
+        if node.next_node is None:
+            self.head = node 
+
+            node.next_node = prev
+            return 
+
+        nxt = node.next_node 
+
+        node.next = prev 
+
+        self.reverse_list_helper(nxt, node) 
+    
+    def reverse_list(self):
+        if self.head is None:
+            return
+        self.reverse_list_helper(self.head, None)
+
+        # not sure why this isn't working,
+        # # base case where list is empty
+        # if head is None:
+        #     return None 
+        # # second base case where list is only one element
+        # elif head.next_node is None:
+        #     return head  
+        # # split into head and rest like in Haskell
+        # rest = self.reverse_list(head.next_node, None)
+        # head.next_node.next_node = head
+        # head.next_node = None 
+
+        # return rest 
+
+
