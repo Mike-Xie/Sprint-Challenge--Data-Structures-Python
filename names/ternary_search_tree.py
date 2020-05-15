@@ -5,23 +5,24 @@ at searching for a particular piece of data in the tree.
 
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
-   on the BSTNode class.
+   on the TSTNode class.
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
-   on the BSTNode class.
+   on the TSTNode class.
 """
 from collections import deque
 from typing import Optional
 
-class BSTNode:
+class TSTNode:
     # A node has a value which is an int and two children which are nodes
     def __init__(self, value: int):
         self.value: int = value
-        self.left: Optional[BSTNode] = None
-        self.right: Optional[BSTNode] = None
+        self.left: Optional[TSTNode] = None
+        self.center: Optional[TSTNode] = None
+        self.right: Optional[TSTNode] = None
 
     # Insert the given value into the tree
     def insert(self, insert_value: int):
-        new_node: BSTNode = BSTNode(insert_value)
+        new_node: TSTNode = TSTNode(insert_value)
         # if root is empty, put in root
         if self.value is None:
             self.value = insert_value
@@ -33,12 +34,18 @@ class BSTNode:
             else: 
                 self.left.insert(insert_value)
         # if root is less than value, search right 
-        elif insert_value >= self.value: 
+        elif insert_value > self.value: 
             # if right child is empty, put there 
             if self.right is None:
                 self.right = new_node
             else:
                 self.right.insert(insert_value)
+        # if it is equal
+        else:
+            if self.center is None:
+                self.center = new_node
+            else:
+                self.center.insert(insert_value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -54,11 +61,18 @@ class BSTNode:
                 return False 
             return self.left.contains(target)
         # right side of tree 
-        else:
+        elif target > self.value:
             # return False if dead end
             if not self.right:
                 return False 
             return self.right.contains(target)
+        # center of tree
+        else:
+            if not self.center:
+                return False
+            return self.center.contains(target)
+
+
     # Return the maximum value found in the tree
     def get_max(self) -> int:
         # for null case 

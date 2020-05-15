@@ -1,6 +1,6 @@
 import time
 
-from binary_search_tree import BSTNode 
+from ternary_search_tree import TSTNode 
 
 start_time = time.time()
 
@@ -16,11 +16,11 @@ duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
 # The original code has a run time of O(n) * O(n) which is O(n**2)
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
-names_1_bst = BSTNode(None)
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
+names_1_bst = TSTNode(None)
 
 for name_1 in names_1:
 	names_1_bst.insert(name_1)

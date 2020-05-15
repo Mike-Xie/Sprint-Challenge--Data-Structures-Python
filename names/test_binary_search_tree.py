@@ -3,12 +3,12 @@ import random
 import sys
 import io
 
-from binary_search_tree import BSTNode 
+from ternary_search_tree import TSTNode 
 
 
-class BSTNodeTests(unittest.TestCase):
+class TSTNodeTests(unittest.TestCase):
     def setUp(self):
-        self.bst = BSTNode(5)
+        self.bst = TSTNode(5)
 
     def test_insert_empty(self):
         
@@ -25,7 +25,7 @@ class BSTNodeTests(unittest.TestCase):
         self.assertEqual(self.bst.right.left.value, 6)
         
     def test_handle_dupe_insert(self):
-        self.bst2 = BSTNode(1)
+        self.bst2 = TSTNode(1)
         self.bst2.insert(1)
         self.assertEqual(self.bst2.right.value, 1)
 
@@ -76,7 +76,7 @@ class BSTNodeTests(unittest.TestCase):
         stdout_ = sys.stdout  # Keep previous value
         sys.stdout = io.StringIO()
 
-        self.bst = BSTNode(1)
+        self.bst = TSTNode(1)
         self.bst.insert(8)
         self.bst.insert(5)
         self.bst.insert(7)
